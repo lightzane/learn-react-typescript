@@ -6,86 +6,49 @@ Learning React (https://reactjs.org/) with Typescript (https://www.typescriptlan
 npx create-create-app <app-name> --template typescript
 ```
 
-## Install
+## Browser Router
+
+https://reactrouter.com/docs/en/v6/getting-started/overview
+
+- `index.tsx`
+- `App.tsx`
+- `src/pages/**/*.tsx`
 
 ```
-npm i bootstrap@5.2.0
+npm install react-router-dom --save
 ```
 
-## Set Defaults
+**index.tsx**
 
-`src/style.scss`
+```tsx
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-```scss
-@import './scss/custom-bootstrap';
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css');
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement,
+);
 
-html,
-body,
-#root {
-  font-size: 1rem;
-  height: 100%;
-  // font-family: var(--font-family); // primeflex
-  // background-color: var(--surface-ground); // primeflex
-  // color: var(--text-color); // primeflex
-  padding: 0;
-  margin: 0;
-  min-height: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #eff3f8;
-}
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+);
 ```
 
-### Custom Bootstrap
+**App.tsx**
 
-https://getbootstrap.com/docs/5.2/customize/sass/
+```tsx
+import { Route, Routes } from 'react-router-dom';
+import { AllMeetupsPage, FavoritesPage, NewMeetupPage } from './pages';
 
-`src/scss/custom-bootstrap.scss`
-
-```scss
-// Option B: Include parts of Bootstrap
-
-// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
-@import '../../node_modules/bootstrap/scss/functions';
-
-// 2. Include any default variable overrides here
-@import './variables';
-
-// 3. Include remainder of required Bootstrap stylesheets
-@import '../../node_modules/bootstrap/scss/variables';
-
-// 4. Include any default map overrides here
-
-// 5. Include remainder of required parts
-@import '../../node_modules/bootstrap/scss/maps';
-@import '../../node_modules/bootstrap/scss/mixins';
-@import '../../node_modules/bootstrap/scss/root';
-
-// 6. Optionally include any other parts as needed
-@import '../../node_modules/bootstrap/scss/utilities';
-@import '../../node_modules/bootstrap/scss/reboot';
-@import '../../node_modules/bootstrap/scss/buttons';
-@import '../../node_modules/bootstrap/scss/containers';
-@import '../../node_modules/bootstrap/scss/grid';
-
-@import '../../node_modules/bootstrap/scss/card';
-@import '../../node_modules/bootstrap/scss/forms/form-control';
-@import '../../node_modules/bootstrap/scss/forms/labels';
-@import '../../node_modules/bootstrap/scss/forms/form-select';
-@import '../../node_modules/bootstrap/scss/badge';
-@import '../../node_modules/bootstrap/scss/helpers/color-bg';
-
-// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
-@import '../../node_modules/bootstrap/scss/utilities/api';
-
-// 8. Add additional custom code here
-@import './maps';
-@import './mixins';
-@import './custom-button';
-
-textarea.form-control {
-  resize: none;
+export function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<AllMeetupsPage />} />
+      <Route path="/new-meetup" element={<NewMeetupPage />} />
+      <Route path="/favorites" element={<FavoritesPage />} />
+    </Routes>
+  );
 }
 ```
 

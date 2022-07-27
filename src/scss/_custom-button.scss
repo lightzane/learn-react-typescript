@@ -1,0 +1,22 @@
+// $variants from src/scss/maps
+// focus-outline from src/scss/mixins
+
+@each $key,
+$value in $variants {
+    .btn-#{$key} {
+        @include focus-outline($value);
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-active-color: var(--bs-white);
+        --bs-btn-font-weight: 500;
+    }
+
+    .btn-outline-#{$key} {
+        @include focus-outline($value);
+        --bs-btn-hover-color: var(--bs-#{$key});
+        --bs-btn-active-color: var(--bs-#{$key});
+        --bs-btn-hover-bg: #{lighten($value, 60%)};
+        --bs-btn-active-bg: #{lighten($value, 50%)};
+        --bs-btn-font-weight: 500;
+    }
+}

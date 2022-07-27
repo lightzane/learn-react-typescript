@@ -1,0 +1,9 @@
+@mixin focus-outline($color: $primary) {
+    // --bs-btn-focus-shadow-rgb: none;
+    box-shadow: none !important;
+
+    &:focus {
+        outline: .15rem solid #{lighten($color, 25%)} !important;
+        outline-offset: .12rem;
+    }
+}

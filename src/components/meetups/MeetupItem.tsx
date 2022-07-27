@@ -1,5 +1,6 @@
 import React from 'react';
 import { IMeetupItem } from '../../shared/interfaces/meetup-item.interface';
+import { Card } from '../ui/Card';
 
 interface Props {
     meetupItem: IMeetupItem;
@@ -7,7 +8,7 @@ interface Props {
 
 export const MeetupItem: React.FC<Props> = ({ meetupItem }) => {
     return (
-        <div className='card w-25 border-rounded overflow-hidden shadow-sm m-2'>
+        <Card className='w-25'>
             <img className='card-img-top' src={meetupItem.image} alt={meetupItem.title} width='100%' />
             <div className="card-body">
                 <div>
@@ -23,6 +24,6 @@ export const MeetupItem: React.FC<Props> = ({ meetupItem }) => {
                     </button>
                 </div>
             </div>
-        </div>
+        </Card>
     );
 };

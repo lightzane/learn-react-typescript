@@ -160,6 +160,40 @@ export const MeetupItem: React.FC<Props> = ({ meetupItem }) => {
 };
 ```
 
+## Getting User and Handling Form submission
+
+`forwardRef` and `useRef`
+
+- components/meetups/**NewMeetupForm.tsx**
+
+Sample:
+
+```tsx
+import { useRef } from 'react'
+
+// Parent
+export const Parent: React.FC = () => {
+  const inputRef = useRef<HTMLInputElement>()
+  // console.log(inputRef.current.value)
+  const childInputRef = useRef<HTMLInputElement>()
+  // console.log(childInputRef.current.value)
+  return (
+    <div>
+      <input type='text' ref={inputRef} />
+      <ChildField ref={childInputRef} />
+    </div>
+  )
+}
+
+interface Props { example?: string }
+// Child
+export const ChildField = forwardRef<HTMLInputElement, Props>((props, ref)=>{
+  return (<input type='text' ref={ref} />)
+})
+```
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

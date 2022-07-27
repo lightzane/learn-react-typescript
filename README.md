@@ -192,6 +192,17 @@ export const ChildField = forwardRef<HTMLInputElement, Props>((props, ref)=>{
 })
 ```
 
+## Navigate Programatically
+
+- src/pages/**NewMeetup.tsx**
+
+```tsx
+import { useNavigate } from 'react-router-dom';
+
+const navigate = useNavigate()
+navigate('/', { replace: true }); // will NOT record the URL in history
+```
+
 
 
 # Getting Started with Create React App

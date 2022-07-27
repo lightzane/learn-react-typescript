@@ -4,7 +4,11 @@ import { InputField } from '../InputField';
 import { Card } from '../ui/Card';
 import classes from './NewMeetupForm.module.scss';
 
-export const NewMeetupForm: React.FC = () => {
+interface Props {
+    onAddMeetup: (data: IMeetupItem) => void;
+}
+
+export const NewMeetupForm: React.FC<Props> = ({ onAddMeetup }) => {
 
     const inputTitleRef = useRef<HTMLInputElement>();
     const inputImageRef = useRef<HTMLInputElement>();
@@ -22,7 +26,7 @@ export const NewMeetupForm: React.FC = () => {
             description: inputAddressRef.current?.value
         };
 
-        console.log(meetupItem);
+        onAddMeetup(meetupItem);
     }
 
     return (

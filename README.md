@@ -230,7 +230,12 @@ src/pages/**AllMeetups.tsx**
 ```tsx
 import { useState } from 'react';
 
-const [counter, setCounter] = useState(0)
+const [counter, setCounter] = useState(0);
+// updates the next state
+setCounter(1);
+// access the currentState and return a new state
+setCounter((currentState)=> currentState + 1);
+console.log(counter);
 ```
 
 

@@ -203,6 +203,22 @@ const navigate = useNavigate()
 navigate('/', { replace: true }); // will NOT record the URL in history
 ```
 
+## useEffect
+
+src/pages/**AllMeetups.tsx**
+
+```tsx
+useEffect(()=>{
+  // init API and update states
+  // when states are changed, React Components will execute again
+  // which can lead to infinite loop
+  // Solution: useEffect()
+  // it will trigger conditionally
+}, []) // <-- the array here are dependencies (you can put state variables etc).
+  // When dependencies are changed, it will trigger useEffect again
+  // when empty, useEffect will only trigger once
+```
+
 
 
 # Getting Started with Create React App

@@ -1,28 +1,38 @@
+import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { MeetupList } from '../components/meetups/MeetupList';
+import { API_URL } from '../shared/constants/api-url.constant';
 import { IMeetupItem } from '../shared/interfaces/meetup-item.interface';
 
-const DUMMY_DATA: IMeetupItem[] = [
-    {
-        id: (Date.now() / 1000).toString(16),
-        title: 'This is the first meetup',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Tea_Graden_Idukki.JPG/1280px-Tea_Graden_Idukki.JPG',
-        address: 'Idukki District, Kerala',
-        description: 'This is a first, amazing meetup which you definitely should not miss.'
-    },
-    {
-        id: (Date.now() / 1000).toString(16),
-        title: 'This is the first meetup',
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Beautiful_Colosseum_in_Rome_.jpg/1200px-Beautiful_Colosseum_in_Rome_.jpg?20210122115511',
-        address: 'Colosseum, Rome, Italy',
-        description: 'Another amazing meetup which you definitely should not miss.'
-    }
-];
-
 export const AllMeetupsPage = () => {
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [meetupData, setMeetupData] = useState<IMeetupItem[]>([]);
+
+    useEffect(() => {
+        setIsLoading(true);
+        axios.get<IMeetupItem[]>(API_URL)
+            .then((res) => {
+                setIsLoading(false);
+                if (res.data) {
+                    setMeetupData(res.data);
+                }
+            });
+    }, [] /* <-- whatever is PUT in this array is a dependency, every change that it will detect, will trigger the useEffect again*/);
+
+    if (isLoading) {
+        return (
+            <section className='container'>
+                <h3 className='header text-center my-3'>Loading...</h3>
+            </section>
+        );
+    }
+
     return (
         <section className='container'>
             <h2 className='header text-center my-3'>All Meetups</h2>
-            <MeetupList meetupItems={DUMMY_DATA} />
+            <MeetupList meetupItems={meetupData} />
         </section>
     );
 };

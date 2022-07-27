@@ -56,6 +56,8 @@ export function App() {
 
 `src/components/layout/MainNavigation.tsx`
 
+**NavLink** will automatically add `.active` class to the element
+
 ```tsx
 import { NavLink } from 'react-router-dom';
 

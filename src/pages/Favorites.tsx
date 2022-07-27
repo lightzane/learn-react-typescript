@@ -1,3 +1,7 @@
 export const FavoritesPage = () => {
-    return <div>favorites page work!</div>;
+    return (
+        <div className='header'>
+            favorites page work!
+        </div>
+    );
 };

@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import classes from './MainNavigation.module.scss'; // scoped and modularized
+import './MainNavigation.scss';
 
 export function MainNavigation() {
     return (
-        <header>
-            <div>React Meetups</div>
+        <header className={classes.header}>
+            <div className={classes.logo}>React Meetups</div>
             <nav>
                 <ul>
                     <li>

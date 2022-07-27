@@ -1,3 +1,7 @@
 export const NewMeetupPage = () => {
-    return <div>new meetup page works!</div>;
+    return (
+        <div className='header'>
+            new meetup page works!
+        </div>
+    );
 };

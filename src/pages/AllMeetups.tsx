@@ -1,3 +1,7 @@
 export const AllMeetupsPage = () => {
-    return <div>all meetups page works!</div>;
+    return (
+        <div className='header'>
+            all meetups page works!
+        </div>
+    );
 };

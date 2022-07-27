@@ -60,24 +60,24 @@ export function App() {
 import { NavLink } from 'react-router-dom';
 
 export function MainNavigation() {
-    return (
-        <header>
-            <div>React Meetups</div>
-            <nav>
-                <ul>
-                    <li>
-                        <NavLink to='/' >All Meetups</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/new-meetup' >New Meetup</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/favorites' >My Favorites</NavLink>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-    );
+  return (
+    <header>
+      <div>React Meetups</div>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/">All Meetups</NavLink>
+          </li>
+          <li>
+            <NavLink to="/new-meetup">New Meetup</NavLink>
+          </li>
+          <li>
+            <NavLink to="/favorites">My Favorites</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
 }
 ```
 
@@ -96,6 +96,26 @@ Update **App.tsx** to integrate `MainNavigation`
 +    </>
    );
  }
+```
+
+## Adding CSS Modules
+
+(Global) `<name>.css` or if using **Sass**: `<name>.scss`
+
+(Scope) `<name>.module.css` or if using **Sass**: `<name>.module.scss`
+
+Adding the word module in the filename as show above will scope the styles and will not be global. See: **MainNavigation.module.scss**
+
+```scss
+// <name>.module.scss
+.header {
+  color: red;
+}
+```
+
+```tsx
+import anyVarNameClass from '<name>.module.scss';
+<header className={anyVarNameClass.header} />;
 ```
 
 # Getting Started with Create React App

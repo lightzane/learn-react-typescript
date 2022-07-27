@@ -31,7 +31,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
 );
 ```
 
@@ -50,6 +50,52 @@ export function App() {
     </Routes>
   );
 }
+```
+
+## Adding Links and Navigations
+
+`src/components/layout/MainNavigation.tsx`
+
+```tsx
+import { NavLink } from 'react-router-dom';
+
+export function MainNavigation() {
+    return (
+        <header>
+            <div>React Meetups</div>
+            <nav>
+                <ul>
+                    <li>
+                        <NavLink to='/' >All Meetups</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/new-meetup' >New Meetup</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/favorites' >My Favorites</NavLink>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    );
+}
+```
+
+Update **App.tsx** to integrate `MainNavigation`
+
+```diff
+ export function App() {
+   return (
++    <>
++      <MainNavigation />
+       <Routes>
+         <Route path='/' element={<AllMeetupsPage />} />
+         <Route path='/new-meetup' element={<NewMeetupPage />} />
+         <Route path='/favorites' element={<FavoritesPage />} />
+       </Routes>
++    </>
+   );
+ }
 ```
 
 # Getting Started with Create React App

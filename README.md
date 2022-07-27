@@ -118,6 +118,48 @@ import anyVarNameClass from '<name>.module.scss';
 <header className={anyVarNameClass.header} />;
 ```
 
+## Update AllMeetups
+
+pages/**AllMeetups.tsx**
+
+## Adding Props Children
+
+- components/ui/**Card.tsx**
+- components/meetups/**MeetupItem.tsx**
+
+**Card.tsx**
+
+```tsx
+import React from 'react';
+
+interface Props {
+    children: React.ReactNode;
+    className?: string;
+}
+
+export const Card: React.FC<Props> = ({ children, className }) => {
+    return (
+        <div className={'card border-rounded overflow-hidden shadow-sm m-2 ' + className}>
+            {children}
+        </div>
+    );
+};
+```
+
+**MeetupItem.tsx**
+
+```tsx
+export const MeetupItem: React.FC<Props> = ({ meetupItem }) => {
+    return (
+        <Card className='w-25'>
+            <div className='card-body'>
+              <p>This will be displayed as children inside that <b>Card</b> component</p>
+            </div>
+        </Card>
+    );
+};
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

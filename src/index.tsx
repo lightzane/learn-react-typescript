@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './style.scss';
 import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { FavoritesProvider } from './store/favorites.context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,8 +11,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <FavoritesProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </FavoritesProvider>
   </React.StrictMode>
 );

@@ -1,5 +1,5 @@
 export interface IMeetupItem {
-    id: string,
+    _id?: string,
     title: string;
     image: string;
     address: string;

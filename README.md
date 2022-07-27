@@ -219,6 +219,109 @@ useEffect(()=>{
   // when empty, useEffect will only trigger once
 ```
 
+## useState
+
+Reactive states used for local components
+
+src/pages/**AllMeetups.tsx**
+
+```tsx
+import { useState } from 'react';
+
+const [counter, setCounter] = useState(0)
+```
+
+
+## React Context
+
+Used like a global state where `useState` will not be effective anymore in such cases you need a state for multiple components.
+
+- src/store/**favorites.context.tsx**
+- src/**index.tsx**
+- src/pages/**Favorites.tsx**
+- src/components/meetups/**MeetupItem.tsx**
+- src/components/layout/**MainNavigation.tsx**
+
+`favorites.context.tsx`
+
+```tsx
+import React, { createContext } from 'react';
+import { useState } from 'react';
+import { IMeetupItem } from '../shared/interfaces/meetup-item.interface';
+
+export interface FavoritesContextType {
+    favorites: IMeetupItem[],
+    totalFavorites: number;
+    addFavorite: (fav: IMeetupItem) => void;
+    removeFavorite: (_id: string) => void;
+    isFavorite: (_id: string) => boolean;
+}
+
+// pass any value of your choice in createContext()
+export const FavoritesContext: React.Context<FavoritesContextType> = createContext({
+    favorites: [],
+    totalFavorites: 0,
+    addFavorite: () => null,
+    removeFavorite: () => null,
+    isFavorite: () => false,
+});
+
+export const FavoritesProvider: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
+
+    const [favorites, setFavorites] = useState<IMeetupItem[]>([]);
+
+    function addFavorite(fav: IMeetupItem): void {
+        setFavorites((currentValue) => currentValue.concat(fav));
+    }
+
+    function removeFavorite(_id: string): void {
+        setFavorites((currentValue) => currentValue.filter(i => i._id !== _id));
+    }
+
+    function isFavorite(_id: string): boolean {
+        return favorites.some(i => i._id === _id);
+    }
+
+    const context: FavoritesContextType = {
+        favorites,
+        totalFavorites: favorites.length,
+        addFavorite,
+        removeFavorite,
+        isFavorite
+    };
+
+    return (
+        <FavoritesContext.Provider value={context}>
+            {children}
+        </FavoritesContext.Provider>
+    );
+};
+```
+
+`index.tsx`
+
+```tsx
+<FavoritesProvider>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+</FavoritesProvider>
+```
+
+`MeetupItem.tsx`
+
+```tsx
+const favoritesCtx = useContext(FavoritesContext);
+const isItemFavorite = favoritesCtx.isFavorite(meetupItem._id);
+
+function removeFavorite() {
+    if (isItemFavorite) {
+        favoritesCtx.removeFavorite(meetupItem._id);
+    } else {
+        favoritesCtx.addFavorite(meetupItem);
+    }
+}
+```
 
 
 # Getting Started with Create React App

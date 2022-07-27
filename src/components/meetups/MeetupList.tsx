@@ -9,7 +9,7 @@ interface Props {
 export const MeetupList: React.FC<Props> = ({ meetupItems }) => {
     return (
         <div className='d-flex justify-content-center flex-wrap align-items-center'>
-            {meetupItems.map(meetup => <MeetupItem key={meetup.id} meetupItem={meetup} />)}
+            {meetupItems.map(meetup => <MeetupItem key={meetup._id} meetupItem={meetup} />)}
         </div>
     );
 };

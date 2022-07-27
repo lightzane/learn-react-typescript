@@ -19,11 +19,10 @@ export const NewMeetupForm: React.FC<Props> = ({ onAddMeetup }) => {
         e.preventDefault();
 
         const meetupItem: IMeetupItem = {
-            id: (Math.floor(Date.now() / 1000)).toString(16),
             title: inputTitleRef.current?.value,
             image: inputImageRef.current?.value,
             address: inputAddressRef.current?.value,
-            description: inputAddressRef.current?.value
+            description: inputDescriptionRef.current?.value
         };
 
         onAddMeetup(meetupItem);

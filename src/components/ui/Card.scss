@@ -1,0 +1,13 @@
+.card {
+    width: 100vw;
+
+    // greater than 599
+    @media screen and (min-width: 599.98px) {
+        max-width: 250px;
+    }
+
+    // less than 599
+    @media screen and (max-width: 599.98px) {
+        width: 100%;
+    }
+}

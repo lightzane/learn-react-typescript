@@ -37,7 +37,7 @@ export const MeetupItem: React.FC<Props> = ({ meetupItem }) => {
     }
 
     return (
-        <Card className='w-25'>
+        <Card>
             <img className='card-img-top' src={meetupItem.image} alt={meetupItem.title} width='100%' />
             <div className="card-body">
                 <div>

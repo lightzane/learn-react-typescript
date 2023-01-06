@@ -3,7 +3,7 @@
 Learning React (https://reactjs.org/) with Typescript (https://www.typescriptlang.org/)
 
 ```
-npx create-create-app <app-name> --template typescript
+npx create-react-app <app-name> --template typescript
 ```
 
 ## Browser Router
